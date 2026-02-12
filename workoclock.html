@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>She Said YES 💍</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(180deg, #ffd1dc, #ffe4ec, #fff0f5);
+    }
+
+    /* MAIN TEXT */
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #f1edee;
+      text-align: center;
+      animation: bounce 1.5s infinite;
+      text-shadow: 0 5px 15px rgba(255, 105, 135, 0.4);
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .sub {
+      font-size: 1.2rem;
+      color: #a64d79;
+      margin-top: -10px;
+    }
+
+    /* FLOATING HEARTS */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    /* CONFETTI */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: pink;
+      opacity: 0.8;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .glow-box {
+      display: inline-block;
+      padding: 20px 30px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      animation: glowPulse 2s infinite alternate;
+      box-shadow: 0 0 20px #ff9ecb, 0 0 40px #ffb6d9, 0 0 60px #ffcce6;
+      max-width: 90%;
+      box-sizing: border-box;
+    }
+
+    .glow-box h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      font-family: "Comic Sans MS", cursive;
+      color: white;
+      text-shadow: 0 0 10px #ff6fa5, 0 0 20px #ff9ecb, 0 0 30px #ffcce6;
+      white-space: normal;
+      line-height: 1.2;
+    }
+
+    @keyframes glowPulse {
+      from {
+        box-shadow: 0 0 20px #bd0423, 0 0 40px #ffb6d9, 0 0 60px #ffcce6;
+      }
+
+      to {
+        box-shadow: 0 0 30px #ff6fa5, 0 0 60px #ff9ecb, 0 0 90px #ffd6ea;
+      }
+    }
+  </style>
+
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="glow-box">
+    <h1>She said YESSSSSSSSS💍💖</h1>
+  </div>
+
+
+  <script>
+    const emojis = ["💖", "💗", "💞", "💕", "🎉", "✨", "🥳", "😍", "🎈"];
+
+    function createCelebration() {
+      const el = document.createElement("div");
+      el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+      el.style.position = "fixed";
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.bottom = "-40px";
+      el.style.fontSize = (24 + Math.random() * 30) + "px";
+      el.style.pointerEvents = "none";
+      el.style.transition = "transform 4s linear, opacity 4s";
+
+      document.body.appendChild(el);
+
+      setTimeout(() => {
+        el.style.transform = `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
+        el.style.opacity = "0";
+      }, 50);
+
+      setTimeout(() => {
+        el.remove();
+      }, 4000);
+    }
+
+    /* Continuous celebration rain */
+    setInterval(createCelebration, 180);
+
+
+    /* Cute emoji burst when user taps/clicks */
+    document.addEventListener("click", function (e) {
+      for (let i = 0; i < 8; i++) {
+        const burst = document.createElement("div");
+        burst.innerHTML = "✨";
+        burst.style.position = "fixed";
+        burst.style.left = e.clientX + "px";
+        burst.style.top = e.clientY + "px";
+        burst.style.fontSize = "24px";
+        burst.style.pointerEvents = "none";
+        burst.style.transition = "all 1s ease-out";
+
+        document.body.appendChild(burst);
+
+        setTimeout(() => {
+          burst.style.transform = `translate(${(Math.random() - 0.5) * 200}px, ${(Math.random() - 0.5) * 200}px)`;
+          burst.style.opacity = "0";
+        }, 10);
+
+        setTimeout(() => burst.remove(), 1000);
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
